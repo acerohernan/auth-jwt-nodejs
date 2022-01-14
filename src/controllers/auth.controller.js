@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 async function signUp(req, res) {
   try {
@@ -7,11 +8,14 @@ async function signUp(req, res) {
     const newUser = new User({
       username,
       email,
-      password: User.encryptPassword(password),
+      password: await User.encryptPassword(password),
     });
 
-    console.log(newUser);
-    res.status(200).json({});
+    const savedUser = await newUser.save();
+
+    jwt.sign({ id: savedUser });
+
+    res.status(200).json({ message: "Successfully registered", savedUser });
   } catch (err) {
     res.status(400).send(err.message);
   }

@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-require("dotenv");
+const config = require("./config");
 
 const productsRoutes = require("./routes/products.routes");
 const authRoutes = require("./routes/auth.routes");
@@ -10,6 +10,9 @@ const authRoutes = require("./routes/auth.routes");
 require("./database");
 
 const app = express();
+
+//settings
+app.set("port", config.port);
 
 //midelwares
 app.use(cors());

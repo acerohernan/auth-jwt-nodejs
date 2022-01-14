@@ -22,7 +22,7 @@ userSchema.statics.encryptPassword = async (password) => {
 };
 
 userSchema.statics.comparePassword = async (password, receivedPassword) => {
-  await bcrypt.compare(password, receivedPassword);
+  return await bcrypt.compare(password, receivedPassword);
 };
 
 const userModel = model("user", userSchema);
