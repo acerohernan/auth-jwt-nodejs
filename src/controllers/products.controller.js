@@ -1,7 +1,7 @@
 const { del } = require("express/lib/application");
 const Product = require("../models/Product");
 
-async function getAll(req, res) {
+async function getAllProducts(req, res) {
   try {
     const products = await Product.find();
     res.json(products);
@@ -62,7 +62,7 @@ async function deleteProduct(req, res) {
 }
 
 module.exports = {
-  getAll,
+  getAllProducts,
   getProductById,
   createProduct,
   updateProduct,

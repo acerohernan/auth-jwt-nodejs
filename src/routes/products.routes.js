@@ -4,7 +4,7 @@ const router = Router();
 
 const { authJwt } = require("../middlewares");
 
-router.get("/", controller.getAll);
+router.get("/", controller.getAllProducts);
 
 router.get("/:id", controller.getProductById);
 
